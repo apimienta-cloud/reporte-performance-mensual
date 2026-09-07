@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reporte Performance Mensual</title>
+  <link rel="stylesheet" href="assets/app.css">
+  <link rel="stylesheet" href="assets/report.css">
+</head>
+<body>
+  <div class="app">
+    <aside class="editor screen-only" id="editor">
+      <div class="toolbar">
+        <strong>Generador de reporte mensual</strong>
+        <div class="toolbar__btns">
+          <button class="btn btn--primary" data-action="pdf">Guardar PDF</button>
+          <button class="btn" data-action="export">Exportar JSON</button>
+          <button class="btn" data-action="import">Importar JSON</button>
+          <button class="btn" data-action="example">Cargar ejemplo</button>
+          <button class="btn" data-action="clear">Vaciar</button>
+        </div>
+      </div>
+      <div class="editor__body" id="editorBody"></div>
+    </aside>
+    <main class="preview">
+      <div class="report" id="report"></div>
+    </main>
+  </div>
+  <input type="file" id="fileImport" accept="application/json,.json" hidden>
+  <script src="assets/data.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+/* ============================================================================
+   report.css — el documento en sí (lo que sale en el PDF).
+   Ancho fijo tipo A4, layout compacto para que la página 1 entre en una hoja.
+   ========================================================================== */
+
+.report {
+  --ink: #26313f;
+  --ink-strong: #1b2430;
+  --text: #414b58;
+  --muted: #8b95a2;
+  --line: #e7e9ec;
+  --card: #ffffff;
+  --beige: #f4ede0;
+  --pos: #1f9d57;
+  --neg: #d84a45;
+  --neutral: #9aa3af;
+  --page-bg: #f3f4f6;
+
+  width: 794px;
+  box-sizing: border-box;
+  padding: 34px 42px;
+  background: var(--page-bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 10.5px;
+  line-height: 1.34;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.report * { box-sizing: border-box; }
+.report strong { color: var(--ink-strong); font-weight: 700; }
+.report p { margin: 0 0 7px; }
+
+/* ---- Cabecera ---------------------------------------------------------- */
+.r-head { margin-bottom: 11px; }
+.r-head__top {
+  display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  margin-bottom: 9px;
+}
+.r-logos { display: flex; align-items: center; gap: 9px; }
+.r-logo {
+  width: 40px; height: 40px; border-radius: 9px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 14px; color: #fff; letter-spacing: .5px;
+}
+.r-logo--agencia { background: #7cb518; }
+.r-logo--cliente { background: #3b4a7a; }
+.r-logo img { width: 100%; height: 100%; object-fit: contain; }
+.r-logos__x { color: var(--muted); font-size: 13px; }
+.r-head__comp { color: var(--muted); font-size: 10px; text-align: right; max-width: 250px; }
+
+.r-title {
+  font-size: 12.5px; font-weight: 700; color: var(--ink);
+  letter-spacing: .06em; text-transform: uppercase; margin: 0 0 3px;
+}
+.r-period { font-size: 19px; font-weight: 800; color: var(--ink-strong); margin: 0 0 5px; }
+.r-subtitle { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 10px; }
+.r-subtitle svg { display: block; }
+
+/* ---- Tarjetas genéricas --------------------------------------------------- */
+.r-card {
+  background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+  padding: 9px 13px; margin-bottom: 7px;
+}
+.r-card--beige { background: var(--beige); border-color: #e7ddc9; }
+.r-card__head { display: flex; align-items: center; gap: 7px; margin-bottom: 6px; }
+.r-card__head h3 {
+  margin: 0; font-size: 11px; font-weight: 800; color: var(--ink);
+  letter-spacing: .05em; text-transform: uppercase;
+}
+.r-card__head .r-card__aside { margin-left: auto; color: var(--muted); font-size: 10px; }
+
+/* ---- KPIs principales (2x2) -------------------------------------------- */
+.kpi-hero { display: grid; grid-template-columns: 1fr 1fr; }
+.kpi-hero__cell { padding: 6px 11px; }
+.kpi-hero__cell:nth-child(1), .kpi-hero__cell:nth-child(2) { border-bottom: 1px solid var(--line); }
+.kpi-hero__cell:nth-child(odd) { border-right: 1px solid var(--line); }
+
+.kpi-label {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 9px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 4px;
+}
+.kpi-value { font-size: 16.5px; font-weight: 800; color: var(--ink-strong); line-height: 1.1; margin-bottom: 4px; }
+.kpi-deltas { display: flex; gap: 12px; flex-wrap: wrap; font-size: 9.5px; }
+.kpi-deltas .delta em { font-style: normal; color: var(--muted); margin-left: 3px; }
+
+/* ---- KPIs secundarios (fila de 3) ------------------------------------- */
+.kpi-strip { display: flex; gap: 9px; margin-bottom: 9px; }
+.kpi-strip__card {
+  flex: 1; background: #fafbfc; border: 1px solid var(--line); border-radius: 9px;
+  padding: 9px 11px;
+}
+.kpi-strip__card .kpi-label { min-height: 21px; align-items: flex-start; }
+.kpi-strip__card .kpi-value { font-size: 15px; }
+.kpi-strip__card .kpi-deltas { flex-direction: column; gap: 1px; }
+
+/* ---- Tablas Meta / Google ------------------------------------------------ */
+.r-table { width: 100%; border-collapse: collapse; font-size: 10px; }
+.r-table th {
+  text-align: right; font-size: 8.5px; font-weight: 700; letter-spacing: .04em;
+  text-transform: uppercase; color: var(--muted); padding: 2px 6px 5px; white-space: nowrap;
+}
+.r-table th:first-child { text-align: left; }
+.r-table td { padding: 3.5px 6px; border-top: 1px solid var(--line); text-align: right; white-space: nowrap; }
+.r-table td:first-child { text-align: left; color: var(--ink-strong); font-weight: 600; }
+.r-table td.num { color: var(--ink-strong); font-weight: 600; font-variant-numeric: tabular-nums; }
+.r-table tbody tr:first-child td { border-top: none; }
+
+.r-group-row td {
+  background: #f1f2f4; color: var(--muted); font-weight: 800;
+  font-size: 8.5px; letter-spacing: .06em; text-transform: uppercase;
+  text-align: left; padding: 3px 6px;
+}
+
+/* ---- Indicador de delta ------------------------------------------------- */
+.delta { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.delta--pos { color: var(--pos); }
+.delta--neg { color: var(--neg); }
+.delta--neutral { color: var(--neutral); }
+.delta__arrow { font-size: 8px; margin-right: 2px; }
+
+/* ---- Página 2 --------------------------------------------------------- */
+.r-page2 { break-before: page; page-break-before: always; padding-top: 2px; }
+
+.r-lectura ul { margin: 0; padding: 0; list-style: none; }
+.r-lectura li { position: relative; padding-left: 13px; margin-bottom: 6px; color: var(--text); }
+.r-lectura li::before { content: "•"; position: absolute; left: 2px; color: var(--muted); }
+.r-legend { display: flex; gap: 18px; margin-top: 9px; flex-wrap: wrap; }
+.r-legend span { display: flex; align-items: center; gap: 5px; font-size: 9.5px; color: var(--muted); }
+.r-legend i { width: 7px; height: 7px; border-radius: 50%; display: inline-block; }
+.r-legend .pos { background: var(--pos); }
+.r-legend .neg { background: var(--neg); }
+.r-legend .neutral { background: var(--neutral); }
+
+.r-bench__intro, .r-bench__cierre { margin: 0 0 7px; }
+.r-bench__table { width: 100%; border-collapse: collapse; margin: 4px 0 8px; }
+.r-bench__table td { padding: 5px 4px; border-top: 1px solid #e7ddc9; font-size: 10.5px; }
+.r-bench__table tr:first-child td { border-top: none; }
+.r-bench__table .b-label { font-weight: 700; color: var(--ink-strong); }
+.r-bench__table .b-val { font-weight: 800; color: var(--ink-strong); }
+.r-bench__table .b-nota { text-align: right; color: var(--muted); }
+.r-source { font-size: 9px; color: var(--muted); margin: 0; }
+
+.r-glosario__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; }
+.r-glos-item .g-term { font-weight: 700; color: var(--ink-strong); font-size: 10px; margin-bottom: 1px; }
+.r-glos-item .g-def { font-size: 9.5px; color: var(--muted); line-height: 1.3; }
+
+.r-footer { text-align: center; font-size: 9px; color: var(--muted); margin-top: 10px; }
+
+/* ---- Impresión ------------------------------------------------------------ */
+@page { size: A4; margin: 12mm; }
+
+@media print {
+  html, body { background: #fff !important; }
+  .app { display: block !important; }
+  .editor, .toolbar, .screen-only { display: none !important; }
+  .preview { position: static !important; overflow: visible !important; padding: 0 !important; background: #fff !important; display: block !important; }
+  .report {
+    width: auto !important; min-height: 0 !important; padding: 0 !important;
+    background: var(--page-bg) !important; box-shadow: none !important; border: none !important;
+    border-radius: 0 !important;
+  }
+  .r-card, .kpi-strip__card { break-inside: avoid; }
+  .r-table tr, .kpi-hero__cell { break-inside: avoid; }
+}
